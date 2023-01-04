@@ -1,0 +1,48 @@
+.loginScreen {
+  position: relative;
+  height: 100%;
+  background: url("https://preview.redd.it/zjgs096khv591.jpg?auto=webp&s=c6135026c093f19ef733cb3435fb95d67aa6f345")
+    center no-repeat;
+  background-size: cover;
+}
+
+.loginScreen_background {
+}
+
+.loginScreen_body {
+  z-index: 1;
+}
+
+.loginScreen_gradient {
+  width: 100%;
+  z-index: 1;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.loginScreen_button {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #e50914;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.loginScreen_logo {
+  position: fixed;
+  left: 0;
+  width: 150px;
+  object-fit: contain;
+  padding-left: 20px;
+}
