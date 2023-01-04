@@ -3,3 +3,4 @@ firebase
 firebase-authentication
 axios
 tmbd api
+react-router-dom 6
