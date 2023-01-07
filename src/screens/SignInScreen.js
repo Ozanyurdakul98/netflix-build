@@ -10,9 +10,7 @@ function SignInScreen() {
     event.preventDefault();
     auth
       .createUserWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
-      .then((authUser) => {
-        console.log(authUser);
-      })
+      .then((authUser) => {})
       .catch((error) => {
         alert(error.message);
       });
@@ -23,9 +21,7 @@ function SignInScreen() {
 
     auth
       .signInWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
-      .then((authUser) => {
-        console.log(authUser);
-      })
+      .then((authUser) => {})
       .catch((error) => {
         alert(error.message);
       });
