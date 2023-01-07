@@ -4,25 +4,35 @@ import HomeScreen from "./screens/HomeScreen";
 import ErrorPage from "./error-page";
 import LoginScreen from "./screens/LoginScreen";
 import { auth } from "./firebase";
-import { useDispatch } from "react-redux";
-import { login, logout } from "./features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout, selectUser } from "./features/userSlice";
+import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
   const dispatch = useDispatch();
-  const user = null;
-  const router = createBrowserRouter([
+  const user = useSelector(selectUser);
+  const router = createBrowserRouter(
     user
-      ? {
-          path: "/",
-          element: <HomeScreen />,
-          errorElement: <ErrorPage />,
-        }
-      : {
-          path: "/",
-          element: <LoginScreen />,
-          errorElement: <ErrorPage />,
-        },
-  ]);
+      ? [
+          {
+            path: "/",
+            element: <HomeScreen />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "/profile",
+            element: <ProfileScreen />,
+            errorElement: <ErrorPage />,
+          },
+        ]
+      : [
+          {
+            path: "/",
+            element: <LoginScreen />,
+            errorElement: <ErrorPage />,
+          },
+        ]
+  );
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -34,11 +44,12 @@ function App() {
           })
         );
       } else {
-        dispatch(logout);
+        dispatch(logout());
       }
     });
     return unsubscribe;
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
   return (
     <div className='app'>
