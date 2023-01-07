@@ -4,8 +4,11 @@ import HomeScreen from "./screens/HomeScreen";
 import ErrorPage from "./error-page";
 import LoginScreen from "./screens/LoginScreen";
 import { auth } from "./firebase";
+import { useDispatch } from "react-redux";
+import { login, logout } from "./features/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
   const user = null;
   const router = createBrowserRouter([
     user
@@ -24,10 +27,14 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
-        //logged in
-        console.log(userAuth);
+        dispatch(
+          login({
+            uid: userAuth.uid,
+            email: userAuth.email,
+          })
+        );
       } else {
-        //loged out
+        dispatch(logout);
       }
     });
     return unsubscribe;
